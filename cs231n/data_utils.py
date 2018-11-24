@@ -28,7 +28,7 @@ def load_CIFAR10(ROOT):
   """ load all of cifar """
   xs = []
   ys = []
-  for b in range(1,5):
+  for b in range(1,6):
     f = os.path.join(ROOT, 'data_batch_%d' % (b, ))
     X, Y = load_CIFAR_batch(f)
     xs.append(X)
@@ -87,12 +87,10 @@ def load_tiny_imagenet(path, dtype=np.float32, subtract_mean=True):
   Load TinyImageNet. Each of TinyImageNet-100-A, TinyImageNet-100-B, and
   TinyImageNet-200 have the same directory structure, so this can be used
   to load any of them.
-
   Inputs:
   - path: String giving path to the directory to load.
   - dtype: numpy datatype used to load the data.
   - subtract_mean: Whether to subtract the mean training image.
-
   Returns: A dictionary with the following entries:
   - class_names: A list where class_names[i] is a list of strings giving the
     WordNet names for class i in the loaded dataset.
@@ -212,11 +210,9 @@ def load_models(models_dir):
   Load saved models from disk. This will attempt to unpickle all files in a
   directory; any files that give errors on unpickling (such as README.txt) will
   be skipped.
-
   Inputs:
   - models_dir: String giving the path to a directory containing model files.
     Each model file is a pickled dictionary with a 'model' field.
-
   Returns:
   A dictionary mapping model file names to models.
   """
