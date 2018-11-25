@@ -101,7 +101,10 @@ class TwoLayerNet(object):
     # classifier loss.                                                          #
     #############################################################################
     num_train = X.shape[0]
-
+    #get max score
+    #get exp for all score matrices
+    #sumation of all scores
+    #calcaute date and reg losses
     scores -= scores.max()
     scores = np.exp(scores)
     scores_sums = np.sum(scores, axis=1)
@@ -143,12 +146,10 @@ class TwoLayerNet(object):
     s[range(num_train), y] = - (scores_sums - cors) / scores_sums
     s /= num_train
     dW2 = X1.T.dot(s)
-    # db2 = np.ones((1, num_train)).dot(s)
     db2 = np.sum(s, axis=0)
     hidden = s.dot(W2.T)
     hidden[X1 == 0] = 0
     dW1 = X.T.dot(hidden)
-    # db1 = np.ones((1, num_train)).dot(hidden)
     db1 = np.sum(hidden, axis=0)
     grads['W2'] = dW2 + 2 * reg * W2
     grads['b2'] = db2
